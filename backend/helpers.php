@@ -1,0 +1,44 @@
+<?php
+
+function pr(mixed $data, bool $exit = false){
+    echo "<pre>";
+    print_r($data);
+    echo "</pre>";
+    if($exit)
+        exit;
+}
+
+function throwError(int $code, string $message = ""){
+    http_response_code($code);
+    echo $message;
+    exit;
+}
+
+function throwAPIError(int $code, string $message = ""){
+    http_response_code($code);
+    echo json_encode([
+        "status" => $code,
+        "message" => $message
+    ]);
+    exit;
+}
+
+function back(){
+    header("Location: {$_SERVER['HTTP_REFERER']}");
+    exit;
+}
+
+function getAlert(string $key){
+    $err = "";
+    if(isset($_SESSION['_errors'][$key])){
+        $err = "<p class='alert text-danger w-100 m-0 ms-1 mt-1 p-0'>{$_SESSION['_errors'][$key][0]}</p>";
+        unset($_SESSION['_errors'][$key]);
+    }
+    return $err;
+}
+
+function getOld(string $key){
+    $old = $_SESSION['_old'][$key] ?? "";
+    unset($_SESSION['_old'][$key]);
+    return $old;
+}
