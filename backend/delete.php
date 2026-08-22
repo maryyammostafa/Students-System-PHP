@@ -2,6 +2,7 @@
 
 require_once __DIR__ . "/helpers.php";
 require_once __DIR__ . "/../database/connection.php";
+require_once __DIR__ . "/getData.php";
 
 header('Content-Type: application/json; charset=UTF-8');
 
@@ -13,4 +14,17 @@ if(!isset($_POST['studentId']))
 
 connection()->exec("DELETE FROM students WHERE id = '{$_POST['studentId']}'");
 
-throwAPIError(200,'Deleted Successfully');
+$page = $_POST['page'] ?? 1;
+$total = getCount(trim($_POST['search']) ?? "");
+$numberOfPages = ceil($total / 10);
+if($page > $numberOfPages) $page = $numberOfPages;
+$page = ($page == 0) ? 1 : $page;
+$students = getData(trim($_POST['search']) ?? "", $page);
+
+echo json_encode([
+    "status" => 200,
+    "message" => "Deleted Successfully",
+    "students" => $students,
+    "total" => $total,
+    "page" => $page
+]);

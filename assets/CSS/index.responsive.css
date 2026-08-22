@@ -3,10 +3,6 @@
     #Filtration form{
         width: 290px;
     }
-    #Registration .box .reset{
-        top: 0;
-        right: 0;
-    }
     #Filtration table{
         min-width: max-content;
     }
@@ -19,20 +15,12 @@
     #Filtration form{
         width: 350px;
     }
-    #Registration .box .reset{
-        top: 20px;
-        right: 5px;
-    }
 }
 
 @media (min-width: 769px) and (max-width: 1300px) {
     #Registration .box,
     #Filtration form{
         width: 400px;
-    }
-    #Registration .box .reset{
-        top: 20px;
-        right: 10px;
     }
 }
 

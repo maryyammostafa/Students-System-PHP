@@ -21,8 +21,8 @@
                 <img src="assets/Images/logo.png" class="img-fluid mb-5" alt="">
             </div>
             <div class="box">
-                <h4 class="text-center pt-4">Students System</h4>
-                <form action="backend/register.php" method="POST" autocomplete="off" class="p-4" data-type="add">
+                <h2 class="text-center pt-4">Students System</h2>
+                <form action="backend/register.php" method="POST" autocomplete="off" class="p-4">
                     <div class="input-group mb-3">
                         <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
                         <input type="text" class="form-control" name="firstName" placeholder="First Name *" value="<?= getOld("firstName") ?>">
@@ -40,12 +40,13 @@
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
-                        <input type="password" class="form-control" name="password" placeholder="Password *">
+                        <input type="password" class="form-control password" name="password" onkeyup="toggleEye(this)" placeholder="Password *">
+                        <span class="input-group-text eye"><i class="fa-solid fa-eye icon" onclick="togglePassword(this)"></i></span>
                         <?= getAlert('password') ?>
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text"><i class="fa-solid fa-hashtag"></i></span>
-                        <input type="number" class="form-control" name="age" min="5" placeholder="Age *" value="<?= getOld("age") ?>">
+                        <input type="text" class="form-control" name="age" placeholder="Age *" value="<?= getOld("age") ?>">
                         <?= getAlert('age') ?>
                     </div>
                     <div class="input-group mb-3">

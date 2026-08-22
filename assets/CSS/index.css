@@ -1,7 +1,7 @@
 body{
-    background: #141e30;
-    background: -webkit-linear-gradient(to right,#243b55,#141e30);
-    background: linear-gradient(to right, #243b55, #141e30);
+    background: #152331;
+    background: -webkit-linear-gradient(to right, #000000, #152331);
+    background: linear-gradient(to right, #000000, #152331);
 }
 
 #Registration img{
@@ -16,18 +16,33 @@ body{
     margin: auto;
     position: relative;
 }
-#Registration .box h4,
-section i{
-    color: #ba944d;
+#Registration .box h2{
+    color: #223a51;
 }
-#Registration .box .reset{
-    position: absolute;
-    top: 20px;
-    right: 10px;
+#Registration .box input:focus{
+    box-shadow: none;
+    border-color: #dee2e6;
+}
+#Registration .box input.password{
+    border-right: none;
+}
+#Registration .box .input-group-text.eye{
+    background-color: #fff;
+}
+#Registration .box .input-group-text.eye i{
+    color: #223a51;
+    cursor: pointer;
+    display: none;
+}
+section i{
     color: #ba944d;
 }
 
 #Filtration form{
     width: 500px;
     margin-inline: auto;
+}
+
+#Filtration .pagination .page-link{
+    cursor: pointer;
 }

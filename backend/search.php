@@ -11,10 +11,11 @@ if($_SERVER['REQUEST_METHOD'] !== 'POST')
 if(!isset($_POST['search']))
     throwAPIError(422,"Unprocessable Entity");
 
-$students = getData(trim($_POST['search']));
+$page = $_POST['page'] ?? 1;
+$students = getData(trim($_POST['search']),$page);
 $total = getCount(trim($_POST['search']));
 
 echo json_encode([
     "students" => $students,
     "total" => $total
-    ]);
+]);

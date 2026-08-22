@@ -1,3 +1,5 @@
+let currentPage = 1;
+
 $("form.search").submit(function (e) {
     e.preventDefault();
     let data = new FormData(this);
@@ -6,9 +8,19 @@ $("form.search").submit(function (e) {
         type: "POST",
         data: data,
         success: function (response) {
-            console.log(response);
+            if (response.total == 0) {
+                $("tbody").html("");
+                $(".pagination").html("");
+                Swal.fire({
+                    icon: "info",
+                    title: "Not Found",
+                    text: "No students found."
+                });
+                return;
+            }
+            currentPage = 1;
             showStudents(response.students);
-            updatePagination(response.total,1);
+            updatePagination(response.total,currentPage);
         },
         error: function (error) {
             Swal.fire({
@@ -45,24 +57,57 @@ function showStudents(students) {
 
 function updatePagination(total,currPage) {
     $(".pagination").html("");
+    if (total == 0)
+        return;
     let li = "",
         number = Math.ceil(total/10);
     for (let i = 0; i <= number+1; i++) {
         if(i==0){
             let isDisabled = (currPage == 1) ? 'disabled' : '',
                 previous = (currPage == 1) ? 1 : currPage-1;
-            li += `<li class='page-item'><a class='page-link ${isDisabled}' href='index.php?page=${previous}'>Previous</a></li>`;
+            li += `<li class='page-item'><a class='page-link ${isDisabled}' onclick='changePage(${previous})'>Previous</a></li>`;
         }else if(i==number+1){
             let isDisabled = (currPage == number) ? 'disabled' : '',
                 next = (currPage == number) ? number : currPage+1;
-            li += `<li class='page-item'><a class='page-link ${isDisabled}' href='index.php?page=${next}'>Next</a></li>`;
+            li += `<li class='page-item'><a class='page-link ${isDisabled}' onclick='changePage(${next})'>Next</a></li>`;
         }else{
             let isActive = (i == currPage) ? 'active' : '';
-            li += `<li class='page-item'><a class='page-link ${isActive}' href='index.php?page=${i}'>${i}</a></li>`;
+            li += `<li class='page-item'><a class='page-link ${isActive}' onclick='changePage(${i})'>${i}</a></li>`;
         }
     }
 
     $(".pagination").html(li);
+}
+
+function changePage(page) {
+    let search = $("form.search input").val();
+
+    $.ajax({
+        url: "backend/search.php",
+        type: "POST",
+        data: {
+            search: search,
+            page: page
+        },
+        success: function (response) {
+            if (response.total == 0) {
+                $("tbody").html("");
+                $(".pagination").html("");
+                Swal.fire({
+                    icon: "info",
+                    title: "Not Found",
+                    text: "No students found."
+                });
+                return;
+            }
+            currentPage = page;
+            showStudents(response.students);
+            updatePagination(response.total,currentPage);
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    });
 }
 
 function deleteStudent(id) {
@@ -76,14 +121,21 @@ function deleteStudent(id) {
         confirmButtonText: "Yes, delete it!"
     }).then((result) => {
         if (result.isConfirmed) {
-            let data = {studentId : id};
+            let search = $("form.search input").val(),
+                data = {
+                    studentId: id,
+                    search: search,
+                    page: currentPage
+                };
             $.ajax({
                 url: "backend/delete.php",
                 type: "POST",
                 data: data,
                 dataType: "json",
                 success: function (response) {
-                    $(`tr[data-id='${id}']`).remove();
+                    currentPage = response.page;
+                    showStudents(response.students);
+                    updatePagination(response.total, currentPage);
                     Swal.fire({
                         title: "Deleted!",
                         text: "Student has been deleted.",
@@ -102,3 +154,29 @@ function deleteStudent(id) {
         }
     });
 }
+
+function togglePassword(that) {
+    let input = $(that).closest(".input-group").find("input.password");
+    if (input.attr("type") === "password") {
+        input.attr("type", "text");
+        $(that).removeClass("fa-eye").addClass("fa-eye-slash");
+    } else {
+        input.attr("type", "password");
+        $(that).removeClass("fa-eye-slash").addClass("fa-eye");
+    }
+}
+function toggleEye(that) {
+    if ($(that).val() === ""){
+        $(that).next(".eye").children().hide();}
+    else
+        $(that).next(".eye").children().show();
+}
+$(".form-control").on("input", function () {
+    let error;
+    if ($(this).hasClass("password"))
+        error = $(this).closest(".input-group").children().last();
+    else
+        error = $(this).next();
+    if (error.length)
+        error.text("");
+});
