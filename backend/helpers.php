@@ -28,15 +28,6 @@ function back(){
     exit;
 }
 
-// function getAlert(string $key){
-//     $err = "";
-//     if(isset($_SESSION['_errors'][$key])){
-//         $err = "<p class='alert text-danger w-100 m-0 ms-1 mt-1 p-0'>{$_SESSION['_errors'][$key][0]}</p>";
-//         unset($_SESSION['_errors'][$key]);
-//     }
-//     return $err;
-// }
-
 function getAlert(string $key, string $type): string{
     $alert = "";
     if($type == 'error' && isset($_SESSION['_errors'][$key])){
