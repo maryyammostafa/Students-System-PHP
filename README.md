@@ -1,4 +1,4 @@
-# 🎓 Students Management System
+# 🎓 Students System
 
 A simple **Students Management System** built with PHP and MySQL.
 
