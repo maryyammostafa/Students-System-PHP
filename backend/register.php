@@ -20,5 +20,6 @@ connection()->exec("INSERT INTO
                     VALUES ('{$_POST['firstName']}', '{$_POST['lastName']}', '{$_POST['email']}', '{$hashedPass}', '{$_POST['age']}', '{$_POST['phone']}')
                     ");
 
+$_SESSION['added'] = "Student Added Successfully";
 unset($_SESSION['_old']);
 back();

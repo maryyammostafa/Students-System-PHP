@@ -28,13 +28,25 @@ function back(){
     exit;
 }
 
-function getAlert(string $key){
-    $err = "";
-    if(isset($_SESSION['_errors'][$key])){
-        $err = "<p class='alert text-danger w-100 m-0 ms-1 mt-1 p-0'>{$_SESSION['_errors'][$key][0]}</p>";
+// function getAlert(string $key){
+//     $err = "";
+//     if(isset($_SESSION['_errors'][$key])){
+//         $err = "<p class='alert text-danger w-100 m-0 ms-1 mt-1 p-0'>{$_SESSION['_errors'][$key][0]}</p>";
+//         unset($_SESSION['_errors'][$key]);
+//     }
+//     return $err;
+// }
+
+function getAlert(string $key, string $type): string{
+    $alert = "";
+    if($type == 'error' && isset($_SESSION['_errors'][$key])){
+        $alert = "<p class='alert text-danger w-100 m-0 ms-1 mt-1 p-0'>{$_SESSION['_errors'][$key][0]}</p>";
         unset($_SESSION['_errors'][$key]);
+    }else if($type == 'success' && isset($_SESSION[$key])){
+        $alert = "<p class='alert msg text-success fs-4 p-0 m-0 mt-3 text-center fw-bolder'><i class='fa-solid fa-circle-check text-success'></i> {$_SESSION[$key]}</p>";
+        unset($_SESSION[$key]);
     }
-    return $err;
+    return $alert;
 }
 
 function getOld(string $key){

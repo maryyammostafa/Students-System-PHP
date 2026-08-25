@@ -20,15 +20,24 @@ if(isset($_POST['password']) && !empty($_POST['password'])){
     $pass = "password = '{$hash}',";
 }
 
-connection()->exec("UPDATE students 
-                    SET first_name = '{$_POST['firstName']}',
-                        last_name = '{$_POST['lastName']}',
-                        email = '{$_POST['email']}',
-                        {$pass}
-                        age = '{$_POST['age']}',
-                        phone = '{$_POST['phone']}'
-                        WHERE id = '{$_POST['id']}'
-                    ");
+$DB = connection();
+
+$before = $DB->query("SELECT * FROM students WHERE id = '{$_POST['id']}'")->fetch();
+
+$DB->exec("UPDATE students SET
+            first_name = '{$_POST['firstName']}',
+            last_name = '{$_POST['lastName']}',
+            email = '{$_POST['email']}',
+            {$pass}
+            age = '{$_POST['age']}',
+            phone = '{$_POST['phone']}'
+            WHERE id = '{$_POST['id']}'
+            ");
+
+$after = $DB->query("SELECT * FROM students WHERE id = '{$_POST['id']}'")->fetch();
+
+if(!($before == $after))
+    $_SESSION['edited'] = "Student Edited Successfully";
 
 $_SESSION['_old'] = [];
 

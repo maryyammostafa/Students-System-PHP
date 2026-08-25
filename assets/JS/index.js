@@ -171,12 +171,19 @@ function toggleEye(that) {
     else
         $(that).next(".eye").children().show();
 }
+
+setTimeout(function () {
+    $(".alert.msg").fadeOut();
+}, 2000);
 $(".form-control").on("input", function () {
     let error;
-    if ($(this).hasClass("password"))
-        error = $(this).closest(".input-group").children().last();
+    if ($(this).hasClass("password")){
+        if($(this).closest(".input-group").children().last().hasClass("alert"))
+            error = $(this).closest(".input-group").children().last();  
+    }
     else
         error = $(this).next();
     if (error.length)
-        error.text("");
+        error.remove();
+    $(".alert.msg").remove();
 });

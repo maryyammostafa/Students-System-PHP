@@ -26,34 +26,34 @@
                     <input type="hidden" name="id" value="<?= getOld("id") ?>">
                     <div class="input-group mb-3">
                         <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
-                        <input type="text" class="form-control" name="firstName" placeholder="First Name *" value="<?= getOld("firstName") ?>">
-                        <?= getAlert('firstName') ?>
+                        <input type="text" class="form-control rounded-end" name="firstName" placeholder="First Name *" value="<?= getOld("firstName") ?>">
+                        <?= getAlert('firstName','error') ?>
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
-                        <input type="text" class="form-control" name="lastName" placeholder="Last Name *" value="<?= getOld("lastName") ?>">
-                        <?= getAlert('lastName') ?>
+                        <input type="text" class="form-control rounded-end" name="lastName" placeholder="Last Name *" value="<?= getOld("lastName") ?>">
+                        <?= getAlert('lastName','error') ?>
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
-                        <input type="text" class="form-control" name="email" placeholder="Email *" value="<?= getOld("email") ?>">
-                        <?= getAlert('email') ?>
+                        <input type="text" class="form-control rounded-end" name="email" placeholder="Email *" value="<?= getOld("email") ?>">
+                        <?= getAlert('email','error') ?>
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
                         <input type="password" class="form-control password" name="password" onkeyup="toggleEye(this)" placeholder="Password *">
-                        <span class="input-group-text eye"><i class="fa-solid fa-eye icon" onclick="togglePassword(this)"></i></span>
-                        <?= getAlert('password') ?>
+                        <span class="input-group-text eye rounded-end"><i class="fa-solid fa-eye icon" onclick="togglePassword(this)"></i></span>
+                        <?= getAlert('password','error') ?>
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text"><i class="fa-solid fa-hashtag"></i></span>
-                        <input type="text" class="form-control" name="age" placeholder="Age *" value="<?= getOld("age") ?>">
-                        <?= getAlert('age') ?>
+                        <input type="text" class="form-control rounded-end" name="age" placeholder="Age *" value="<?= getOld("age") ?>">
+                        <?= getAlert('age','error') ?>
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text"><i class="fa-solid fa-mobile"></i></span>
-                        <input type="text" class="form-control" name="phone" placeholder="Phone *" value="<?= getOld("phone") ?>">
-                        <?= getAlert('phone') ?>
+                        <input type="text" class="form-control rounded-end" name="phone" placeholder="Phone *" value="<?= getOld("phone") ?>">
+                        <?= getAlert('phone','error') ?>
                     </div>
                     <button class="btn btn-info text-light w-100">Edit</button>
                 </form>
