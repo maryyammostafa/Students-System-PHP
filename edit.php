@@ -6,7 +6,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Students-System | Edit</title>
-    <link rel="shortcut icon" href="assets/Images/logo.png" type="image/x-icon">
 
     <link rel="stylesheet" href="assets/CSS/plugins/all.min.css">
     <link rel="stylesheet" href="assets/CSS/plugins/bootstrap.min.css">
@@ -15,13 +14,16 @@
 </head>
 <body>
 
-    <section id="Registration" class="py-5 mb-5">
+    <section id="Registration" class="py-5">
         <div class="container">
-            <div class="image text-center">
-                <img src="assets/Images/logo.png" class="img-fluid mb-5" alt="">
-            </div>
-            <div class="box">
-                <h2 class="text-center pt-4">Students System</h2>
+            <div class="box pt-4">
+                <div class="head">
+                    <span class="icon">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </span>
+                    <h2>Students System</h2>
+                    <p>Edit student</p>
+                </div>
                 <form action="backend/edit.php" method="POST" autocomplete="off" class="p-4">
                     <input type="hidden" name="id" value="<?= getOld("id") ?>">
                     <div class="input-group mb-3">

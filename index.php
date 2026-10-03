@@ -6,7 +6,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Students-System</title>
-    <link rel="shortcut icon" href="assets/Images/logo.png" type="image/x-icon">
 
     <link rel="stylesheet" href="assets/CSS/plugins/all.min.css">
     <link rel="stylesheet" href="assets/CSS/plugins/bootstrap.min.css">
@@ -17,14 +16,17 @@
 
     <section id="Registration" class="py-5">
         <div class="container">
-            <div class="image text-center">
-                <img src="assets/Images/logo.png" class="img-fluid mb-5" alt="">
-            </div>
-            <div class="box">
-                <h2 class="text-center pt-4">Students System</h2>
+            <div class="box pt-4">
+                <div class="head">
+                    <span class="icon">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </span>
+                    <h2>Students System</h2>
+                    <p>Add a new student</p>
+                </div>
                 <?= getAlert('added','success') ?>
                 <?= getAlert('edited','success') ?>
-                <form action="backend/register.php" method="POST" autocomplete="off" class="p-4">
+                <form action="backend/register.php" method="POST" autocomplete="off" class="py-4 px-3 px-md-4">
                     <div class="input-group mb-3">
                         <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
                         <input type="text" class="form-control rounded-end" name="firstName" placeholder="First Name *" value="<?= getOld("firstName") ?>">
@@ -56,25 +58,29 @@
                         <input type="text" class="form-control rounded-end" name="phone" placeholder="Phone *" value="<?= getOld("phone") ?>">
                         <?= getAlert('phone','error') ?>
                     </div>
-                    <button class="btn btn-success w-100">Add</button>
+                    <button class="btn add w-100"><i class="fa-solid fa-plus me-2"></i> Add Student</button>
                 </form>
             </div>
         </div>
     </section>
 
-    <section id="Filtration" class="pb-5">
+    <section id="Filtration" class="pb-5 pt-4">
         <div class="container">
+            <div class="section-title">
+                <span>STUDENT RECORDS</span>
+                <h2>All Students</h2>
+            </div>
             <form class="search mb-5 d-flex" action="" method="POST">
-                <div class="input-group input me-2">
+                <div class="input-group input me-md-2 mb-3 mb-md-0">
                     <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
                     <input type="text" name="search" class="form-control" placeholder="Search...">
                 </div>
-                <button class="btn btn-success px-3">Search</button>
+                <button class="btn search-btn px-3"><i class="fa-solid fa-magnifying-glass me-1"></i> Search</button>
             </form>
-            <div class="cover overflow-auto">
+            <div class="cover table-card overflow-auto">
                 <div class="table-responsive">
                     <table class="table rounded overflow-hidden m-auto">
-                        <thead class="table-dark">
+                        <thead>
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Name</th>

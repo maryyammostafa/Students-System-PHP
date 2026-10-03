@@ -1,10 +1,14 @@
 @media (max-width: 1300px) {
     #Registration .box,
-    #Filtration form{
-        width: 290px;
+    #Filtration .search{
+        width: 300px;
+        flex-direction: column;
     }
     #Filtration table{
         min-width: max-content;
+    }
+    .pagination {
+        justify-content: initial;
     }
 }
 
@@ -12,23 +16,28 @@
 
 @media (min-width: 577px) and (max-width: 1300px) {
     #Registration .box,
-    #Filtration form{
+    #Filtration .search{
         width: 350px;
     }
 }
 
 @media (min-width: 769px) and (max-width: 1300px) {
     #Registration .box,
-    #Filtration form{
+    #Filtration .search{
         width: 400px;
+        flex-direction: initial;
     }
 }
 
 @media (min-width: 992px) and (max-width: 1300px) {
     #Registration .box,
-    #Filtration form{
+    #Filtration .search{
         width: 500px;
     }
 }
 
-@media (min-width: 1181px) and (max-width: 1300px) {}
+@media (min-width: 1181px) and (max-width: 1300px) {
+    .pagination {
+        justify-content: center;
+    }
+}

@@ -22,8 +22,7 @@ foreach($students as $student){
             <td>{$student['age']}</td>
             <td>{$student['phone']}</td>
             <td>
-                <a href='edit.php?studentId={$student['id']}' class='btn btn-info text-light me-2 edit'>Edit</a>
-                <button class='btn btn-primary me-2 undo d-none'>Undo</button>
+                <a href='edit.php?studentId={$student['id']}' class='btn btn-primary text-light me-2 edit'>Edit</a>
                 <button class='btn btn-danger delete' onclick='deleteStudent({$student['id']})'>Delete</button>
             </td>
         </tr>";

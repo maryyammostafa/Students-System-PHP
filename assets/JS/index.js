@@ -45,8 +45,7 @@ function showStudents(students) {
                 <td>${students[i]['age']}</td>
                 <td>${students[i]['phone']}</td>
                 <td>
-                    <a href='edit.php?studentId=${students[i]['id']}' class='btn btn-info text-light me-2 edit'>Edit</a>
-                    <button class='btn btn-primary me-2 undo d-none'>Undo</button>
+                    <a href='edit.php?studentId=${students[i]['id']}' class='btn btn-primary text-light me-2 edit'>Edit</a>
                     <button class='btn btn-danger delete' onclick='deleteStudent(${students[i]['id']})'>Delete</button>
                 </td>
             </tr>`;
@@ -65,14 +64,14 @@ function updatePagination(total,currPage) {
         if(i==0){
             let isDisabled = (currPage == 1) ? 'disabled' : '',
                 previous = (currPage == 1) ? 1 : currPage-1;
-            li += `<li class='page-item'><a class='page-link ${isDisabled}' onclick='changePage(${previous})'>Previous</a></li>`;
+            li += `<li class='page-item'><a class='page-link ${isDisabled} me-1' onclick='changePage(${previous})'>Previous</a></li>`;
         }else if(i==number+1){
             let isDisabled = (currPage == number) ? 'disabled' : '',
                 next = (currPage == number) ? number : currPage+1;
             li += `<li class='page-item'><a class='page-link ${isDisabled}' onclick='changePage(${next})'>Next</a></li>`;
         }else{
             let isActive = (i == currPage) ? 'active' : '';
-            li += `<li class='page-item'><a class='page-link ${isActive}' onclick='changePage(${i})'>${i}</a></li>`;
+            li += `<li class='page-item'><a class='page-link ${isActive} me-1' onclick='changePage(${i})'>${i}</a></li>`;
         }
     }
 
