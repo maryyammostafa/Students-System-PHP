@@ -24,7 +24,7 @@
                     <h2>Students System</h2>
                     <p>Edit student</p>
                 </div>
-                <form action="backend/edit.php" method="POST" autocomplete="off" class="p-4">
+                <form action="backend/edit.php" method="POST" autocomplete="off" class="py-4 px-3 px-md-4">
                     <input type="hidden" name="id" value="<?= getOld("id") ?>">
                     <div class="input-group mb-3">
                         <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
